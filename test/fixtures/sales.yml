@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  saleTime: 2021-09-21 16:38:24
+
+two:
+  saleTime: 2021-09-21 16:38:24

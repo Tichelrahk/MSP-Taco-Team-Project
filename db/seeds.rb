@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Product.destroy_all
+Sale.destroy_all
+SaleItem.destroy_all
+
+product = Product.create( name: 'Asprin', stock: 50, price: 500, active:true)
+sale = Sale.create()
+item = SaleItem.create(quantity:5)
+item.sale = sale
+item.product = product
+
+puts ("1 sale created #{product.name} #{Sale.all.count}")
