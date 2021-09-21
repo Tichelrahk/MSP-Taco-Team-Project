@@ -16,4 +16,4 @@ item = SaleItem.create(quantity:5)
 item.sale = sale
 item.product = product
 
-puts ("1 sale created #{product.name}")
+puts ("1 sale created #{product.name} #{Sale.all.count}")
