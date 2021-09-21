@@ -1,3 +1,37 @@
 // Place all the styles related to the sales controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+ul {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #F6EEE0;
+  }
+  /* start on left of page */
+  li {
+    float: left;
+  }
+
+  li a {
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  /* Change the link color to #A45C40  on hover */
+  li a:hover {
+    background-color: #d38161;
+  }
+
+a:hover {
+  color: white;
+}
