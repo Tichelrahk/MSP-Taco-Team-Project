@@ -10,16 +10,20 @@ Product.destroy_all
 Sale.destroy_all
 SaleItem.destroy_all
 
-product = Product.create( name: 'Asprin', stock: 50, price: 500, active:true)
+product1 = Product.create( name: 'Asprin', stock: 50, price: 500, active:true)
+product2 = Product.create( name: 'Panadol', stock: 50, price: 800, active:true)
+product1.save()
+product2.save()
+
 sale = Sale.create()
 item1 = SaleItem.create(quantity:5)
 item1.sale = sale
-item1.product = product
+item1.product = product1
 item1.save()
 
 item2 = SaleItem.create(quantity:10)
 item2.sale = sale
-item2.product = product
+item2.product = product2
 item2.save()
 
-puts ("1 sale created Product#{product.name}  Sale #{Sale.all.count} SaleItem #{SaleItem.all.count}")
+puts ("1 sale created Product#{item2.product.name}  Sale #{Sale.all.count} SaleItem #{SaleItem.all.count}")

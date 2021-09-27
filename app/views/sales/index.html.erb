@@ -1,8 +1,20 @@
 <div class="container">
 	<h1>PhpSalesRecordManagment</h1>
-	<h2> Please use the following fields to submit product details to the database </h2>
 	<p> <%= @sales.first.created_at %> </p>
 	<p> <%= @products.first.name %> </p>
 	<p> Sales items <%= @sales.first.sale_items.first.product.name %></p>
 	<%= link_to "Add Sale", new_sale_path, class: "btn" %>
+
+	<% @sales.each do |sale| %>
+		<div class="sales-container">
+			<h2>ID:<%= sale.id %> Sale at <%= sale.created_at %></h2>
+			<div class="sales-info">
+				<% sale.sale_items.each_with_index do |si, ind| %>
+					<h3><%= "Item #{ind + 1}: #{si.product.name}" %></h3>
+					<p><%= si.quantity %> at $<%= sprintf('%.2f', (si.product.price/100).to_f) %> = $<%= sprintf('%.2f', (si.total_cents).to_f/100) %></p>
+				<% end %>
+				<h2>$<%= sprintf('%.2f', (sale.total_price).to_f/100) %></h2>
+			</div>
+		</div>
+	<% end %>
 </div>
