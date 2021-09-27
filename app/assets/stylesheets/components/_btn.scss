@@ -1,0 +1,17 @@
+.btn {
+  color: white;
+  padding: 6px 20px;
+  border-radius: 5px;
+  background: #00c8b8;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #1BCB7F;
+  color: white;
+}
+
+.btn-area {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
