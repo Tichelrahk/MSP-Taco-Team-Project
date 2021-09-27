@@ -15,5 +15,6 @@ sale = Sale.create()
 item = SaleItem.create(quantity:5)
 item.sale = sale
 item.product = product
+item.save()
 
-puts ("1 sale created #{product.name} #{Sale.all.count}")
+puts ("1 sale created Product#{product.name}  Sale #{Sale.all.count} SaleItem #{SaleItem.all.count}")
