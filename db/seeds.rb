@@ -12,9 +12,14 @@ SaleItem.destroy_all
 
 product = Product.create( name: 'Asprin', stock: 50, price: 500, active:true)
 sale = Sale.create()
-item = SaleItem.create(quantity:5)
-item.sale = sale
-item.product = product
-item.save()
+item1 = SaleItem.create(quantity:5)
+item1.sale = sale
+item1.product = product
+item1.save()
+
+item2 = SaleItem.create(quantity:10)
+item2.sale = sale
+item2.product = product
+item2.save()
 
 puts ("1 sale created Product#{product.name}  Sale #{Sale.all.count} SaleItem #{SaleItem.all.count}")
