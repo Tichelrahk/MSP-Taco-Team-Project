@@ -1,0 +1,27 @@
+<h1>New Product</h1>
+
+<%= form_with model: @products do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :stock %><br>
+    <%= form.text_field :stock %>
+  </div>
+  
+  <div>
+    <%= form.label :price %><br>
+    <%= form.text_field :price %>
+  </div>
+  
+  <div>
+    <%= form.label :active %><br>
+    <%= form.check_box :active %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
