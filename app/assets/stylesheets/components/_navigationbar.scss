@@ -1,21 +1,26 @@
-ul {
-    position: fixed;
+.navbar {
+  width: 100%;
+  background-color: #F6EEE0;
+}
+
+.navbar ul {
+    position: relative;
     top: 0;
     width: 100%;
   }
-ul {
+.navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #F6EEE0;
+
   }
   /* start on left of page */
-  li {
+.navbar  li {
     float: left;
   }
 
-  li a {
+.navbar  li a {
     font-family: Arial, Helvetica, sans-serif;
     display: block;
     color: black;
@@ -25,10 +30,10 @@ ul {
   }
 
   /* Change the link color to #A45C40  on hover */
-  li a:hover {
+ .navbar li a:hover {
     background-color: #d38161;
   }
 
-a:hover {
+.navbar a:hover {
   color: white;
 } 
