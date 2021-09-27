@@ -3,4 +3,13 @@ class SalesController < ApplicationController
 		@sales = Sale.all
 		@products = Product.all
 	end
+
+	def about
+	end
+
+	def new
+	end
+
+	def create
+	end
 end
