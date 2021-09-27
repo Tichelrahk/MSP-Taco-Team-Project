@@ -1,5 +1,8 @@
-<h1>PhpSalesRecordManagment</h1>
-<h2> PLease use the following fields to submit product details to the database </h2>
-<p> <%= @sales.first.created_at %> </p>
-<p> <%= @products.first.name %> </p>
-<p> Sales items <%= @sales.first.sale_items.first.product.name %></p>
+<div class="container">
+	<h1>PhpSalesRecordManagment</h1>
+	<h2> Please use the following fields to submit product details to the database </h2>
+	<p> <%= @sales.first.created_at %> </p>
+	<p> <%= @products.first.name %> </p>
+	<p> Sales items <%= @sales.first.sale_items.first.product.name %></p>
+	<%= link_to "Add Sale", new_sale_path, class: "btn" %>
+</div>
