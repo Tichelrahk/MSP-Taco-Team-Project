@@ -3,6 +3,6 @@
 	<li><a href="about.html.erb">About</a></li>	
 </ul>
 <h1>Hello</h1>
-<p> <%= @sales.count %> </p>
-<p> <%=  @products.first.name %> </p>
-<p><%= @items.count %></p>
+<p> <%= @sales.first.created_at %> </p>
+<p> <%= @products.first.name %> </p>
+<p> Sales items <%= @sales.first.sale_items.first.product.name %></p>
