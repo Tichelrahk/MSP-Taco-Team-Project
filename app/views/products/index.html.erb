@@ -1,0 +1,11 @@
+<div class="container">
+	<h1>PhpSalesRecordManagment Products</h1>
+	<% @products.each do |prod| %>
+		<div class="sales-container">
+			<h2>ID:<%= prod.id %> Name:<%= prod.name %></h2>
+			<div class="sales-info">
+				$<%= sprintf('%.2f', (prod.price/100).to_f) %>/unit
+			</div>
+		</div>
+	<% end %>
+</div>
