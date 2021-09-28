@@ -21,8 +21,53 @@ class SalesController < ApplicationController
 
 	def edit
 	end
-	
+
 	def update
+	end
+
+	def weekly
+		week_ago = Time.now() - 7.days
+		@sales = Sale.where(saleTime: (week_ago)..Time.now)
+		@items = []
+		@sales.each do |sale|
+			sale.sale_items.each do |item|
+				@items << item
+			end
+		end
+
+		@total_products_sold = {}
+		@sales.each do |sale|
+			sale.sale_items.each do |item|
+				k = item.product
+				value = item.quantity.to_i. + (@total_products_sold[k].to_i)
+				@total_products_sold[k] = value
+			end
+		end
+
+		@week_revenue = 0
+		@total_products_sold.each do |k, v|
+			@week_revenue = @week_revenue + (k.price * v)
+		end
+
+	end
+
+	def monthly
+		month_ago = Time.now() - 1.month
+		@sales = Sale.where(saleTime: (month_ago)..Time.now)
+
+		@total_products_sold = {}
+		@sales.each do |sale|
+			sale.sale_items.each do |item|
+				k = item.product
+				value = item.quantity.to_i. + (@total_products_sold[k].to_i)
+				@total_products_sold[k] = value
+			end
+		end
+
+		@month_revenue = 0
+		@total_products_sold.each do |k, v|
+			@month_revenue = @month_revenue + (k.price * v)
+		end
 	end
 
 	private
@@ -35,5 +80,4 @@ class SalesController < ApplicationController
     def sale_params
     	params.require(:sale).permit(:name, :description, :photo)
     end
-  
 end

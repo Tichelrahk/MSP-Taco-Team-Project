@@ -15,15 +15,38 @@ product2 = Product.create( name: 'Panadol', stock: 50, price: 800, active:true)
 product1.save()
 product2.save()
 
-sale = Sale.create()
+time1 = DateTime.now()
+time2 = (time1 - 3.weeks)+ 5.minutes
+
+sale1 = Sale.create(saleTime: time1)
 item1 = SaleItem.create(quantity:5)
-item1.sale = sale
+item1.sale = sale1
 item1.product = product1
 item1.save()
 
 item2 = SaleItem.create(quantity:10)
-item2.sale = sale
+item2.sale = sale1
 item2.product = product2
 item2.save()
 
-puts ("1 sale created Product#{item2.product.name}  Sale #{Sale.all.count} SaleItem #{SaleItem.all.count}")
+sleep(3)
+
+sale2 = Sale.create(saleTime: time1)
+item3 = SaleItem.create(quantity:10)
+item3.sale = sale2
+item3.product = product1
+item3.save()
+
+item4 = SaleItem.create(quantity:15)
+item4.sale = sale2
+item4.product = product2
+item4.save()
+
+sale3 = Sale.create(saleTime: time2)
+item5 = SaleItem.create(quantity:50)
+item5.sale = sale3
+item5.product = product1
+item5.save()
+
+
+puts ("#{Sale.all.count}Sales Product#{item2.product.name}  Sale #{Sale.all.count} SaleItem #{SaleItem.all.count}")
