@@ -1,0 +1,29 @@
+<div class="container">
+	<h1>Edit Product <%= "ID:#{@product.id} #{@product_name}" %></h1>
+
+	<%= form_with model: @product do |form| %>
+	  <div>
+	    <%= form.label :name %><br>
+	    <%= form.text_field :name %>
+	  </div>
+
+	  <div>
+	    <%= form.label :stock %><br>
+	    <%= form.text_field :stock %>
+	  </div>
+
+	  <div>
+	    <%= form.label :price %><br>
+	    <%= form.text_field :price %>
+	  </div>
+
+	  <div>
+	    <%= form.label :active %><br>
+	    <%= form.check_box :active %>
+	  </div>
+
+	  <div>
+	    <%= form.submit %>
+	  </div>
+	<% end %>
+</div>

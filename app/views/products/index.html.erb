@@ -2,9 +2,11 @@
 	<h1>PhpSalesRecordManagment Products</h1>
 	<% @products.each do |prod| %>
 		<div class="sales-container">
+			<%= link_to "Edit", edit_product_path(prod) %>
 			<h2>ID:<%= prod.id %> Name:<%= prod.name %></h2>
-			<div class="sales-info">
-				$<%= sprintf('%.2f', (prod.price/100).to_f) %>/unit
+			<div class="product-info">
+				<p>$<%= sprintf('%.2f', (prod.price/100).to_f) %>/unit</p>
+				<p>Stock:<%= prod.stock %></p>
 			</div>
 		</div>
 	<% end %>
