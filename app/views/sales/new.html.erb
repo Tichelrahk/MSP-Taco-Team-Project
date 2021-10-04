@@ -1,11 +1,18 @@
 <div class="container">
 	<h1>New Sale</h1>
 
-	<%= form_with model: @sales do |form| %>
+	<%= form_with model: @sale, url: sales_path, scope: :sales do |form|  %>
+		<div>
+			<%= form.label :name, "Add Product" %><br>
+			<%= form.select :name, ["Aspirin", "Paracetamol", "Band-Aid"] %><br>
+			<%= form.label :quantity, "Quantity" %><br>
+			<%= form.text_field :quantity %><br>
+		</div>
+		<br>
+				
+		<div>
+			<%= form.submit %>
+		</div>
 
-
-	  <div>
-	    <%= form.submit %>
-	  </div>
 	<% end %>
 </div>
