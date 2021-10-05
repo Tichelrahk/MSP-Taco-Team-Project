@@ -11,7 +11,12 @@ class SalesController < ApplicationController
 	end
 
 	def create
-	    @sale = Sale.new(sale_params)
+		time = Time.now()
+	    @sale = Sale.create(saleTime: time)
+		item = SaleItem.create(quantity: params[:quantity])
+		item.sale = @sale
+		item.product = Product.where("params[:name] = products.name")
+		item.save
 	    if @sale.save
 	      redirect_to root_path
 	    else
@@ -73,11 +78,11 @@ class SalesController < ApplicationController
 	private
 
 	def set_sale
-    	@sale = Sale.find(params[:id])
+    	@sales = Sale.find(params[:id])
     end
 
     # Needs work
     def sale_params
-    	params.require(:sale).permit(:name, :description, :photo)
+    	params.permit(:saleTime, :name, :quantity)
     end
 end
