@@ -14,3 +14,17 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+/* cannot get it to work as of now so commented(Agrim)
+
+function init(){
+    var x = document.getElementsByName
+    var navitems = document.getElementsByClassName("navbar-nav").querySelectorAll('ul li');
+    if(document.URL.includes("products")){
+        //document.getElementsByName("pro").style.background = 'red';
+        navitems[2].style.background = 'red';
+    }
+}
+window.onload = init;
+*/
