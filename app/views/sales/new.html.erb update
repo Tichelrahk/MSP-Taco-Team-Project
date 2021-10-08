@@ -1,0 +1,18 @@
+<div class="container">
+	<h1>New Sale</h1>
+
+	<%= form_with model: @sale, url: sales_path, scope: :sales do |form|  %>
+		<div>
+			<%= form.label :name %><br>
+			<%= form.text_field :name %><br>
+			<%= form.label :quantity %><br>
+			<%= form.text_field :quantity %><br>
+		</div>
+		<br>
+				
+		<div>
+			<%= form.submit %>
+		</div>
+
+	<% end %>
+</div>
