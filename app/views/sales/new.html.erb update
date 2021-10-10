@@ -1,0 +1,23 @@
+<div class="container">
+	<h1>New Sale</h1>
+
+	<%= form_with model: @sale, url: sales_path, scope: :sales do |form|  %>
+		<div>
+			<%= form.label :product_id1, "Product ID #1" %><br>
+			<input id="product_id1" name="product_id1" type="text_field"></input></br>
+			<%= form.label :quantity1 %><br>
+			<input id="quantity1" name="quantity1" type="text_field"></input></br>
+			<br>
+			<%= form.label :product_id2, "Product ID #2" %><br>
+			<input id="product_id2" name="product_id2" type="text_field"></input></br>
+			<%= form.label :quantity2 %><br>
+			<input id="quantity2" name="quantity2" type="text_field"></input></br>
+		</div>
+		<br>
+				
+		<div>
+			<%= form.submit %>
+		</div>
+
+	<% end %>
+</div>
