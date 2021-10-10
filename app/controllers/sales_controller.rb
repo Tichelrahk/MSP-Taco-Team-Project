@@ -10,13 +10,21 @@ class SalesController < ApplicationController
 	def new
 	end
 
-	def create
-	    @sale = Sale.new(sale_params)
-	    if @sale.save
-	      redirect_to root_path
-	    else
-	      render :new
-	    end
+	def create	
+	    sale1 = Sale.create(saleTime: Time.now())
+		productID = params[:product_id].to_i
+		itemQuantity = params[:quantity]
+		if Product.exists?(:id => productID)		
+			item1 = SaleItem.create(quantity: itemQuantity)
+			item1.sale = sale1
+			item1.product = Product.find(productID)
+			item1.save
+			if sale1.save
+			  redirect_to root_path
+			else
+			  render :new
+			end
+		end		
 	end
 
 	def edit
@@ -44,11 +52,10 @@ class SalesController < ApplicationController
 			end
 		end
 
-		@week_revenue = 0
+	    @week_revenue = 0
 		@total_products_sold.each do |k, v|
 			@week_revenue = @week_revenue + (k.price * v)
 		end
-
 	end
 
 	def monthly
@@ -68,16 +75,27 @@ class SalesController < ApplicationController
 		@total_products_sold.each do |k, v|
 			@month_revenue = @month_revenue + (k.price * v)
 		end
-	end
+	end	
+
+	def destroy
+		@sale = Sale.find(params[:id])
+		@sale.delete
+
+		redirect_to root_path
+    end
 
 	private
 
 	def set_sale
-    	@sale = Sale.find(params[:id])
+    	@sales = Sale.find(params[:id])
     end
+
+	def sale_items_params
+		params.permit(:product_id, :quantity)
+	end
 
     # Needs work
     def sale_params
-    	params.require(:sale).permit(:name, :description, :photo)
+    	params.require(:sale).permit(:saleTime)
     end
 end
