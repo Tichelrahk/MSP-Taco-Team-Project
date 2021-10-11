@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get "about", to: "sales#about"
   get "weekly-reports", to: "sales#weekly"
   get "monthly-reports", to: "sales#monthly"
-  resources :sales, only: %i[new create edit update]
+  resources :sales, only: %i[new create edit update] do 
+    collection { post :import} 
+  end
   resources :products, only: %i[index new create edit update]
 end

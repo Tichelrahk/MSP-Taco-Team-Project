@@ -2,6 +2,15 @@ class SalesController < ApplicationController
 	def index
 		@sales = Sale.all
 		@products = Product.all
+		respond_to do |format|
+			format.html
+			format.csv { render text: @sale.to_csv }
+	end
+end
+
+	def import 
+		sales.import(params[:file])	
+		redirect_to sales_path, notice: "uploaded successfully" 
 	end
 
 	def about
@@ -13,7 +22,7 @@ class SalesController < ApplicationController
 	def create
 	    @sale = Sale.new(sale_params)
 	    if @sale.save
-	      redirect_to root_path
+	      redirect_to root_paths
 	    else
 	      render :new
 	    end
