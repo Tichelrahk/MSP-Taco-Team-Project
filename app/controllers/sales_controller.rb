@@ -70,6 +70,53 @@ class SalesController < ApplicationController
 		end
 	end
 
+	def monthlyprediction
+		month_ago = Time.now() - 1.month
+		forminputs = [:searchid]
+		forminputs.each do |f|
+		@form_complete = true
+		if params.has_key? f and not params[f].blank?
+			@form_complete = true
+		else
+			@form_complete = false
+		end
+	end
+	@saleitems = SaleItem.where(created_at: (month_ago)..Time.now, product_id: params[:searchid])
+	@form_complete = true
+	@saleq = " "
+	if @form_complete
+		#@saleq = @saleitems[0].quantity
+			form_status_msg = "This products predicted sale is:"+@saleq+ "units"
+		end
+		respond_to do |format|
+			format.html do
+			  flash.now[:status_msg] = form_status_msg
+			  render :monthlyprediction, locals: { feedback: params }
+			end
+		  end
+		  #<p>This products predicted sale is: <%= @saleq %> units</p>
+    
+
+		@sales = Sale.where(saleTime: (month_ago)..Time.now)
+
+		# 
+		# @predictedvalue = {}
+		# @sales= Sale.where(name: "aspirin")
+		# @sales.each do |sale|
+		# 	sale.sale_items.each do |item|
+		# 		k = item.product
+		# 		value = item.quantity.to_i. + (@predictedvalue[k].to_i)
+		# 		@predictedvalue[k] = value
+		# 	end
+		# end
+
+		# @value = 0
+		# @predictedvalue.each do|k, v|
+		# 	@value = @value +(k.price*v)
+		# end
+
+
+	end
 	private
 
 	def set_sale

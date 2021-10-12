@@ -1,0 +1,21 @@
+<head>
+</head>
+<div class="container">
+<h1>PhpSalesRecordManagment Monthly Prediction</h1>
+<p>Enter the item id to see its next months predicted sale</p>
+
+<%= form_with model: @sale, url:monthly_prediction_path, scope: :sale do |form| %>
+    <%= form.text_field :searchid %>
+    <div>
+    <%= form.label :searchid, "Enter the id of the product:" %><br>
+    </div>
+    
+    <div>
+    <%= form.submit "Predict sales" %>
+	</div>
+    <div name="poponsubmit">
+    <p></p>
+    </div>
+    <% end %>
+    </div>
+    <%= javascript_pack_tag 'monthlyprediction'%>

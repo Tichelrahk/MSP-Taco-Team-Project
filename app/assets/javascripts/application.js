@@ -27,3 +27,4 @@ function init(){
 }
 window.onload = init;
 */
+console.log('js is working hahahahahahhahhahaah')

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "about", to: "sales#about"
   get "weekly-reports", to: "sales#weekly"
   get "monthly-reports", to: "sales#monthly"
+  get "monthly-prediction", to: "sales#monthlyprediction"
   resources :sales, only: %i[new create edit update]
   resources :products, only: %i[index new create edit update]
 end
