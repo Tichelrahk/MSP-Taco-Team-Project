@@ -102,7 +102,6 @@ class SalesController < ApplicationController
 		params.permit(:product_id, :quantity)
 	end
 
-    # Needs work
     def sale_params
     	params.require(:sale).permit(:saleTime)
     end
