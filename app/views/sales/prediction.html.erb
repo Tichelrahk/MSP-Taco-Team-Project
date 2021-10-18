@@ -1,0 +1,12 @@
+<head>
+</head>
+<div class="container">
+<h1>PhpSalesRecordManagment Monthly Prediction</h1>
+
+
+<p>Enter the id of the product whose next months sale prediction is desired:</p>
+<p>(for example, 2,3,4)</p>
+    <%= form_for "", url: prediction_path, role: "search", method: :get do%>
+        <%= text_field_tag :search , @search_term, placeholder: "Search by id"%>
+        
+    <% end %>

@@ -102,6 +102,49 @@ end
 		redirect_to root_path
     end
 
+	def prediction
+		#to keep flash message after redirect_to display flash message
+		flash.keep
+		#when search is done
+		if params[:search]
+			#entered id by user
+			@search_term = params[:search]
+			#sales from now to last month
+			@saleitemsm1 = SaleItem.where(product_id: @search_term, created_at: (Time.now-1.month)..Time.now)
+			#sales between 1 month ago to 2 months ago
+			@saleitemsm2 = SaleItem.where(product_id: @search_term, created_at: (Time.now-2.month)..Time.now-1.month)
+			
+			#final predicted value initialised
+			@predicted_value = 0
+			if(SaleItem.where(product_id: @search_term).present?)
+
+				# check if sale data 1 exists
+				if @saleitemsm1.present?
+					@saleitemsm1.each do |s|
+						@predicted_value += s.quantity
+					end
+				end
+				#check if sale data 2 exists
+				if @saleitemsm2.present?
+					@saleitemsm2.each do |s|
+						@predicted_value += s.quantity
+					end
+					@predicted_value /=2
+				end
+				
+				if(@predicted_value == 0)
+					display = "There is not enough data to predict sales of this item."
+				else
+				display = "The next months prediction for the item with id #{@search_term} is #{@predicted_value} units."
+				end
+			else
+				display = "There is no item in the database with that id."
+			end
+			redirect_to displayprediction_path, :flash => { :notice => display}
+			
+		end
+	end
+
 	private
 
 	def set_sale
