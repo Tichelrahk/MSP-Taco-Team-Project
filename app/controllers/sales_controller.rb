@@ -4,10 +4,12 @@ class SalesController < ApplicationController
 		@products = Product.all
 		respond_to do |format|
 			format.html
-			format.csv { render text: @sale.to_csv }
+			#format.csv { render text: @root_path/index.to_csv }
+			format.csv { send_data @sales.to_csv, filename: "sales-#{Date.today}.csv" }
 	end
 end
 
+	
 	def import 
 		sales.import(params[:file])	
 		redirect_to sales_path, notice: "uploaded successfully" 

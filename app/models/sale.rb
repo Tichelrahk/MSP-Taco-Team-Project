@@ -15,10 +15,12 @@ class Sale < ApplicationRecord
 	end
 
 	def self.to_csv 
-		CSV.generate do |csv|
-			csv << column_names
-			all.each do |sale|
-				csv << sale.attributes.values_at(*column_names)
+		attributes = %w{name stock price active}
+
+		CSV.generate(headers: true) do |csv|
+			csv << attributes
+			all.each do |sales|
+				csv << attributes.map{ |attr| sales.send(attr) }
 			end
 		end
 	end

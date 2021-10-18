@@ -1,7 +1,11 @@
 class ProductsController < ApplicationController
 	def index
 		@products = Product.where("active = true")
+		respond_to do |format|
+			format.html
+			format.csv { render text: @products/index.to_csv }
 	end
+end
 
 	def create
 		price = product_params[:price]
