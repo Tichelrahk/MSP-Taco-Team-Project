@@ -1,15 +1,35 @@
 <div class="container">
 	<h1>PhpSalesRecordManagment Products</h1>
+
 	<% @products.each do |prod| %>
+
 		<div class="sales-container">
+
 			<%= link_to "Edit", edit_product_path(prod) %>
 			<h2>ID: <%= prod.id %><br><%= prod.name %></h2>
+
 			<div class="product-info">
 				<p>$<%= sprintf('%.2f', (prod.price/100).to_f) %>/unit</p>
-				<p>Stock:<%= prod.stock %></p>
+				<p>Stock: <%= prod.stock %> units</p>		
 			</div>
-		</div>
+
+			<div>
+				<% if prod.stock <= 10 %>
+				<p style ="color: #ff0000"> <strong> <%= prod.name %> stock is running low </strong></p>
+				<% end %>
+
+			</div>
+
+			<%= link_to "Destroy", product_path(prod),
+				method: :delete,
+        data: { confirm: "Delete this product?" } %>
+			</div>	
+
 	<% end %>
+<<<<<<< HEAD
 </div>
 
 
+=======
+</div>
+>>>>>>> 8d43391c21d49b1b2c89219277c8b8d78d263a66

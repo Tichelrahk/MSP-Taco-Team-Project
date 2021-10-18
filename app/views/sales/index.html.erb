@@ -21,11 +21,6 @@
 
 <div class="button-container">
 <h3>Download CSV</h3>
-<%= link_to "download", sales_path(format: "csv"), class: 'btn btn-default' %>
+<%= link_to "download", root_path(format: "csv"), class: 'btn btn-default' %>
 
-<h3>Upload CSV</h3>
-<%= form_tag import_sales_path, multipart: true do %>
-<%= file_field_tag :file%>
-<% submit_tag "upload", class: 'btn btn-default' %>
-<% end %>
 </div>

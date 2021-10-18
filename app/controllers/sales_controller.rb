@@ -5,7 +5,7 @@ class SalesController < ApplicationController
 		respond_to do |format|
 			format.html
 			#format.csv { render text: @root_path/index.to_csv }
-			format.csv { send_data @sales.to_csv, filename: "sales-#{Date.today}.csv" }
+			format.csv { send_data @products.to_csv, filename: "products-#{Date.today}.csv" }
 	end
 end
 
@@ -21,13 +21,30 @@ end
 	def new
 	end
 
-	def create
-	    @sale = Sale.new(sale_params)
-	    if @sale.save
-	      redirect_to root_paths
-	    else
-	      render :new
-	    end
+	#Needs Work
+	def create	
+		productID1 = params[:product_id1].to_i
+		itemQuantity1 = params[:quantity1].to_i
+		item1 = SaleItem.create(quantity: itemQuantity1)
+		productID2 = params[:product_id2].to_i
+		itemQuantity2 = params[:quantity2].to_i
+		item2 = SaleItem.create(quantity: itemQuantity2)
+		if Product.exists?(:id => productID1)			
+			sale = Sale.create(saleTime: Time.now())
+			item1.sale = sale
+			item1.product = Product.find(productID1)
+			item1.save
+			if Product.exists?(:id => productID2)
+				item2.sale = sale
+				item2.product = Product.find(productID2)
+				item2.save
+			end
+			if sale.save
+			  redirect_to root_path
+			else
+			  render :new
+			end	
+		end
 	end
 
 	def edit
@@ -55,11 +72,10 @@ end
 			end
 		end
 
-		@week_revenue = 0
+	    @week_revenue = 0
 		@total_products_sold.each do |k, v|
 			@week_revenue = @week_revenue + (k.price * v)
 		end
-
 	end
 
 	def monthly
@@ -79,16 +95,26 @@ end
 		@total_products_sold.each do |k, v|
 			@month_revenue = @month_revenue + (k.price * v)
 		end
-	end
+	end	
+
+	def destroy
+		@sale = Sale.find(params[:id])
+		@sale.delete
+
+		redirect_to root_path
+    end
 
 	private
 
 	def set_sale
-    	@sale = Sale.find(params[:id])
+    	@sales = Sale.find(params[:id])
     end
 
-    # Needs work
+	def sale_items_params
+		params.permit(:product_id, :quantity)
+	end
+
     def sale_params
-    	params.require(:sale).permit(:name, :description, :photo)
+    	params.require(:sale).permit(:saleTime)
     end
 end
