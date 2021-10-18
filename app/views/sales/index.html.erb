@@ -7,7 +7,7 @@
 
 	<% @sales.each do |sale| %>
 		<div class="sales-container">
-			<h2>ID:<%= sale.id %> Sale at <%= sale.created_at %></h2>
+			<h2>ID:<%= sale.id %> Sale at <%= sale.saleTime %></h2>
 			<div class="sales-info">
 				<% sale.sale_items.each_with_index do |si, ind| %>
 					<h3><%= "Item #{ind + 1}: #{si.product.name}" %></h3>
