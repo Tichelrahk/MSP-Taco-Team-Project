@@ -5,8 +5,8 @@
 
 
 <p>Enter the id of the product whose next months sale prediction is desired:</p>
-<%= @products.each do |prod| %>
-    <p><span><%= prod.id %></span><span><%= prod.name %></span></p>
+<% @products.each do |product| %>
+    <p><span><%= product.id %>.</span>  <span><%= product.name %></span></p>
 <% end %>
 <p>(for example, 2,3,4)</p>
     <%= form_for "", url: prediction_path, role: "search", method: :get do%>
