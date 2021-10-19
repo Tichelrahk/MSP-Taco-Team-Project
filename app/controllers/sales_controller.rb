@@ -38,20 +38,31 @@ class SalesController < ApplicationController
 		products.each do |p|
 			product = Product.find(p["id"])
 			quant = p["quantity"].to_i
-			if quant < product.stock
-				product.stock - quant
+			if quant <= product.stock
+				product.stock = product.stock - quant
 				si = SaleItem.new
 				si.product = product
 				si.quantity = quant
 				si.sale = sale
 				si.save()
+				product.save()
 			else
 				error = "not enough stock"
 				puts error
 			end
 		end
-		if (error = "" and sale.save)
-			redirect_to root_path
+		if (error == "")
+
+			if sale.save
+				sale.sale_items.each do |si| 
+					si.product.save
+					puts " PRODUCT STOKK #{si.product.stock}"
+					si.save
+				end
+				redirect_to root_path
+			else
+				raise ActiveRecord::Rollback, "Could not save! #{error}"
+			end
 		else
 			raise ActiveRecord::Rollback, "Could not save! #{error}"
 			error = ""
