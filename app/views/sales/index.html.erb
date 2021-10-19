@@ -1,12 +1,22 @@
 <div class="container">
 	<h1>PhpSalesRecordManagment Sales</h1>
-	<p> <%= @sales.first.created_at %> </p>
-	<p> <%= @products.first.name %> </p>
-	<p> Sales items <%= @sales.first.sale_items.first.product.name %></p>
+	<p>Search Sales</p>
+	<!-- SEARCH BAR -->
+	<div class="">
+	  <div class="">
+	    <div class=""></div>
+	    <input size="40" type="text" placeholder="Search product or time (YYYY-MM-DD)" confirm-type="search" id="search"></input>
+	  </div>
+	  <br>
+	  <div class="button-container">
+	    <div class="btn btn-default" id="searchButton">Search</div>
+	  </div>
+	  <br>
+	</div>
 	<%= link_to "Add Sale", new_sale_path, class: "btn" %>
-
 	<% @sales.each do |sale| %>
 		<div class="sales-container">
+			<%= link_to "Edit", edit_sale_path(sale) %>
 			<h2>ID:<%= sale.id %> Sale at <%= sale.saleTime %></h2>
 			<div class="sales-info">
 				<% sale.sale_items.each_with_index do |si, ind| %>
@@ -19,7 +29,7 @@
 	<% end %>
 </div>
 
-<div class="button-container">
+<div class="download-button">
 <h3>Download CSV</h3>
 <%= link_to "download", root_path(format: "csv"), class: 'btn btn-default' %>
 
