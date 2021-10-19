@@ -1,14 +1,22 @@
 class SalesController < ApplicationController
 	def index
-		@sales = Sale.all
-		@products = Product.all
-		respond_to do |format|
-			format.html
-			#format.csv { render text: @root_path/index.to_csv }
-			format.csv { send_data @products.to_csv, filename: "products-#{Date.today}.csv" }
+		if params[:query].present?
+      		sql_query = "name LIKE :query OR saleTime LIKE :query"
+    		@sales = Sale.joins(:sale_items, :products).where(sql_query, query: "%#{params[:query]}%").distinct
+    		@products = Product.all
+			respond_to do |format|
+				format.html
+				format.csv { send_data @products.to_csv, filename: "products-#{Date.today}.csv" }
+			end
+    	else
+			@sales = Sale.all
+			@products = Product.all
+			respond_to do |format|
+				format.html
+				format.csv { send_data @products.to_csv, filename: "products-#{Date.today}.csv" }
+			end
+		end
 	end
-end
-
 	
 	def import 
 		sales.import(params[:file])	
