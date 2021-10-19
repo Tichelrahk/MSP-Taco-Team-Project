@@ -137,6 +137,7 @@ class SalesController < ApplicationController
     end
 
 	def prediction
+		@products = Product.all
 		#to keep flash message after redirect_to display flash message
 		flash.keep
 		#when search is done
