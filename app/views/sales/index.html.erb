@@ -7,6 +7,7 @@
 
 	<% @sales.each do |sale| %>
 		<div class="sales-container">
+			<%= link_to "Edit", edit_sale_path(sale) %>
 			<h2>ID:<%= sale.id %> Sale at <%= sale.saleTime %></h2>
 			<div class="sales-info">
 				<% sale.sale_items.each_with_index do |si, ind| %>
