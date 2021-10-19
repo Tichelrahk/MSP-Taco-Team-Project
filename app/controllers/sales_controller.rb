@@ -48,6 +48,7 @@ end
 	end
 
 	def edit
+		@sale = Sale.find(params[:id])
 	end
 
 	def update
