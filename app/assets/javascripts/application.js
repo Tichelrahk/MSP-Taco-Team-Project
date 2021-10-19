@@ -14,6 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require Search
 
 /* cannot get it to work as of now so commented(Agrim)
 
