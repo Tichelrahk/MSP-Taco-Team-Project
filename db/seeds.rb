@@ -10,7 +10,7 @@ Product.destroy_all
 Sale.destroy_all
 SaleItem.destroy_all
 
-product1 = Product.create( name: 'Asprin', stock: 50, price: 500, active:true)
+product1 = Product.create( name: 'Aspirin', stock: 50, price: 500, active:true)
 product2 = Product.create( name: 'Panadol', stock: 50, price: 800, active:true)
 product3 = Product.create( name: 'Lozenges', stock: 196, price: 600, active: true)
 product1.save()
