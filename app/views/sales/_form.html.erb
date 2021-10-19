@@ -1,0 +1,5 @@
+<br>
+<%= form.select("products[]id", Product.all.collect{|p| ["#{p.name} $#{sprintf('%.2f', (p.price/100).to_f)}", p.id]}) %>
+<%= form.text_field "products[]quantity" %>
+<br>
+<br>

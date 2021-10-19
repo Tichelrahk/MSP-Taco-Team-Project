@@ -14,6 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require form
 
 /* cannot get it to work as of now so commented(Agrim)
 
