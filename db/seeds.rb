@@ -10,13 +10,16 @@ Product.destroy_all
 Sale.destroy_all
 SaleItem.destroy_all
 
-product1 = Product.create( name: 'Asprin', stock: 50, price: 500, active:true)
+product1 = Product.create( name: 'Aspirin', stock: 50, price: 500, active:true)
 product2 = Product.create( name: 'Panadol', stock: 50, price: 800, active:true)
+product3 = Product.create( name: 'Lozenges', stock: 196, price: 600, active: true)
 product1.save()
 product2.save()
+product3.save()
 
 time1 = DateTime.now()
 time2 = (time1 - 3.weeks)+ 5.minutes
+time3 = (time2 - 5.weeks)
 
 sale1 = Sale.create(saleTime: time1)
 item1 = SaleItem.create(quantity:5)
@@ -48,5 +51,14 @@ item5.sale = sale3
 item5.product = product1
 item5.save()
 
+sale4 = Sale.create(saleTime: time3)
+item6 = SaleItem.create(quantity: 2)
+item6.sale = sale4
+item6.product = product3
+item6.save()
+item7 = SaleItem.create(quantity: 1)
+item7.sale = sale4
+item7.product = product1
+item7.save()
 
 puts ("#{Sale.all.count}Sales Product#{item2.product.name}  Sale #{Sale.all.count} SaleItem #{SaleItem.all.count}")

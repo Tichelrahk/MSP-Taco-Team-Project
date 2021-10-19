@@ -15,6 +15,9 @@
 //= require turbolinks
 //= require_tree .
 
+//= require form
+//= require Search
+
 /* cannot get it to work as of now so commented(Agrim)
 
 function init(){

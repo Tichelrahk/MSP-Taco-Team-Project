@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :sales, only: %i[new create edit update] do 
     collection { post :import} 
   end
-  resources :products, only: %i[index new create edit update]
+  resources :products, only: %i[index new create edit update] 
 end
