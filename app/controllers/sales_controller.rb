@@ -62,6 +62,10 @@ end
 				@items << item
 			end
 		end
+		respond_to do |format|
+			format.html
+			format.csv { send_data @sales.to_csv1, filename: "weekly-#{Date.today}.csv" }
+		end
 
 		@total_products_sold = {}
 		@sales.each do |sale|
@@ -81,6 +85,10 @@ end
 	def monthly
 		month_ago = Time.now() - 1.month
 		@sales = Sale.where(saleTime: (month_ago)..Time.now)
+		respond_to do |format|
+			format.html
+			format.csv { send_data @sales.to_csv1, filename: "monthly-#{Date.today}.csv" }
+		end
 
 		@total_products_sold = {}
 		@sales.each do |sale|
