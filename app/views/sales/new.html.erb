@@ -4,10 +4,10 @@
 	<%= form_with model: @sale, url: sales_path, scope: :sales do |form|  %>
 		<div id="adding-products">
 			<p>Select a Product</p>
-			<div id="forms">
-				<div><%= render partial: "sales/form", locals: { form: form } %></div>
-				<div><%= render partial: "sales/form", locals: { form: form } %></div>
+			<div id="form-container">
+				<div id="form"><%= render partial: "sales/form", locals: { form: form } %></div>
 			</div>
+			<div id="addProd" class="btn">Add Product</div>
 		</div>
 		<br>
 		<div>
