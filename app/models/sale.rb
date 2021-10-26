@@ -26,12 +26,23 @@ class Sale < ApplicationRecord
 	end
 
 	def self.to_csv1 
-		attributes = %w{sale saleTime}
+		attributes = %w{id saleTime dollars sale_items}
 
 		CSV.generate(headers: true) do |csv|
 			csv << attributes
-			all.each do |sales|
-				csv << attributes.map{ |attr| sales.send(attr) }
+			all.each do |sale|
+				data = []
+				array = []
+				data << sale.id
+				data << sale.saleTime
+				total = 0
+				sale.sale_items.each do |si|
+					array << "product name = #{si.product.name}, quantity = #{si.quantity}, price = #{si.product.price/100}"
+					total += (si.product.price * si.quantity)
+				end
+				data << total/100
+				data << array
+				csv << data
 			end
 		end
 	end
